@@ -39,7 +39,6 @@ const Form = () => {
     }
 
     useEffect (() => {
-        console.log("segment",segment);
         if(segment) {
             if(segment.intent.intent === "add_expense")
             {
@@ -84,7 +83,7 @@ const Form = () => {
             addTransaction();
         }
     }
-    },[segment])
+    }, [segment,addTransaction,initialState, transaction ])
 
     const selectedCategories = transaction.type === "Income" ? incomeCategories : expenseCategories;
 

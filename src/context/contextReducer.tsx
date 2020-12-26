@@ -1,4 +1,3 @@
-import transitions from "@material-ui/core/styles/transitions";
 import { Reducer } from "react";
 import { TransactionType } from "./context";
 

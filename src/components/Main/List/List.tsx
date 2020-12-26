@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {List as MUIList, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction, IconButton, Slide, Avatar} from "@material-ui/core"
+import {List as MUIList, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction, Slide, Avatar} from "@material-ui/core"
 import { Delete, MoneyOff} from "@material-ui/icons"
 
 import { ExpenseTrackerContext } from "./../../../context/context"
