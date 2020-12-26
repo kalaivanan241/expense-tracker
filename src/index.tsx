@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { SpeechProvider} from "@speechly/react-client";
 import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import Provider from './context/context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SpeechProvider appId="0853f310-88df-4cad-9dd8-2133ddaa32f3" language="en-US">
+    <Provider>
+      <App />
+    </Provider>
+    </SpeechProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

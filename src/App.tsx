@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useRef} from 'react'
+import { Grid} from "@material-ui/core"
+import {PushToTalkButton, PushToTalkButtonContainer, ErrorPanel } from "@speechly/react-ui"
+import {  SpeechState, useSpeechContext} from "@speechly/react-client"
 
-function App() {
+import Details from './components/Details/Details'
+import useStyles from "./styles"
+import Main from './components/Main/Main'
+
+const App:React.FC = () => {
+  const classes = useStyles()
+  const  {speechState} = useSpeechContext()
+  const main = useRef<null | HTMLDivElement>(null);
+
+  const executeScroll = () => main?.current?.scrollIntoView();
+
+  useEffect(() => {
+    if(speechState === SpeechState.Recording) {
+      executeScroll();
+    }
+    
+  },[speechState])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Grid className={classes.grid} container spacing={0} alignItems="center" justify="center" style={{height:"100vh"}}>
+          <Grid item xs={12} sm={3} className={classes.mobile}>
+              <Details title="Income"/>
+          </Grid>
+          <Grid item xs={12} sm={5}  className={classes.main} ref={main}>
+              <Main ></Main>
+          </Grid>
+          <Grid item xs={12} sm={3} className={classes.desktop}>
+              <Details title="Income"/>
+          </Grid>
+          <Grid item xs={12} sm={3} className={classes.last}>
+              <Details title="Expense"/>
+          </Grid>
+      </Grid>
+      <PushToTalkButtonContainer>
+        <PushToTalkButton/>
+        <ErrorPanel/>
+      </PushToTalkButtonContainer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
